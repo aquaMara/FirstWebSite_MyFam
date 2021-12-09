@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/static/css/homes.css" th:href="@{/css/homes.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>homes</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="inside" id="top">
+                <h3>Choose a home</h3>
+                <div class="foreach">
+                    <div th:each="onehome : ${allhomes}">
+                        <a th:href="@{/person/{homename}(homename=${onehome.getHomename()})}"
+                            th:text="${onehome.getHomename()}">home</a>
+                    </div>
+                </div>
+            </div>
+            <div class="inside" id="bottom">
+                <h3>or Create one</h3>
+                <form th:action="@{/person}" th:object="${home}" method="post">
+                    <input type="text" th:field="*{homename}" placeholder="Homename">
+                    <button type="submit" class="btn btn-primary btn-block">Add home</button>
+                    <div id="message" th:utext="${successMessage}"></div>
+                </form>
+            </div>
+            <div id="link-customize">
+                <a th:href="@{/person/feedback}">feedback</a>
+            </div>
+        </div>
+    </body>
+</html>

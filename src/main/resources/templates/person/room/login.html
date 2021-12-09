@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/static/mylogin.css" th:href="@{/mylogin.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>login</title>
+    </head>
+    <body>
+    <div class="container">
+        <h3 class="login">Login to HOMEs</h3>
+        <form th:method="post" th:action="@/login">
+            <input type="text" id="username" name="MyUsername" placeholder="Username" required="" autofocus="">
+            <input type="password" id="password" name="MyPassword" class="form-control" placeholder="Password" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </form>
+        <a th:href="@{/register}">REGISTER</a>
+    </div>
+    </body>
+</html>

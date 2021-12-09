@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/static/homes.css" th:href="@{/homes.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        font-family: "Irish Grover";
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        font-family: 'M PLUS 1 Code', sans-serif;
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        font-family: 'Bebas Neue', cursive;
+
+
+        a:link {
+            color: yellow;
+        }
+        a:visited {
+            color: deeppink;
+        }
+
+        button:hover {
+            background-color: yellow;
+            color: purple;
+        }
+        button:active {
+            background-color: lightgoldenrodyellow;
+        }
+
+        <a th:href="@{/person/{username}(username=${oneuser.getUsername()})}"
+                                   th:text="${oneuser.getUsername()}">users</a>

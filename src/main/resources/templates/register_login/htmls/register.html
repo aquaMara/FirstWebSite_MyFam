@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/static/css/myregister.css" th:href="@{/css/myregister.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>register</title>
+    </head>
+    <body>
+        <div class="container">
+            <h3 class="login">Register in HOMEs</h3>
+            <form autocomplete="off" action="#" th:action="@{/register}" th:object="${defaultuser}" method="post" class="form-signin" role="form">
+                <input type="text" th:field="*{name}" placeholder="Name" class="form-control">
+                <input type="text" th:field="*{username}" placeholder="Username" class="form-control">
+                <input type="password" th:field="*{password}" placeholder="Password" class="form-control">
+                <button type="submit" class="btn btn-primary btn-block">register</button>
+                <div class="outer-alert">
+                    <div id="message" th:utext="${successMessage}"></div>
+                    <div class="alert" th:if="${(bindingResult != null &amp;&amp; bindingResult.getAllErrors() != null)}">
+                        <ul th:each="data : ${bindingResult.getAllErrors()}">
+                            <li th:text="${data.getDefaultMessage()}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <a th:href="@{/login}">LOGIN</a>
+        </div>
+    </div>
+    </body>
+</html>

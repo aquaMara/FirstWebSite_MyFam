@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/first.css" th:href="@{/first.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>welcome</title>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Hi and welcome!!!</h3>
+            <div class="buttons">
+                <div id="register">
+                    <a th:href="@{/register}">REGISTER</a>
+                </div>
+                <div id="login">
+                    <a th:href="@{/login}">LOGIN</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

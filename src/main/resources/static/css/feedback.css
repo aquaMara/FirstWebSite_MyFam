@@ -1,0 +1,48 @@
+html {
+    background-color: #0aa7c0;
+}
+.container {
+    width: 400px;
+    height: 100px;
+    background-color: #af42af;
+    margin: auto;
+    display: grid;
+    grid-auto-rows: 5fr 3fr;
+    box-shadow: 8px 8px 16px #412782;
+}
+#feedback {
+    margin-top: 30px;
+}
+button, input {
+    font-family: 'M PLUS 1 Code', sans-serif;
+    background-color: white;
+    border-style: none;
+    box-shadow: 2px 4px 6px rgba(.8, 0, 0, .2);
+    color: #0aa7c0;
+    font-size: 18px;
+    border-radius: 6px;
+}
+input {
+    margin-left: 10px;
+}
+button:hover, input:hover {
+    border-style: solid;
+    border-color: cadetblue;
+}
+#link-back {
+    margin-left: 10px;
+}
+
+input:active {
+    border-color: cadetblue;
+}
+#link-back {
+    text-decoration: none;
+    color: #0aa7c0;
+}
+#link-back:hover {
+    font-size: 25px;
+}
+#link-back:visited {
+    color: #0aa7c0;
+}

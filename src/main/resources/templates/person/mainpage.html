@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MAINPAGE</title>
+</head>
+<body>
+<p>Name of your home:</p>
+<div th:text="${onehome.getHomename()}">home</div>
+
+<p>All users of your home:</p>
+<div th:each="oneuser : ${allhomeusers}">
+    <a th:href="@{/person/{username}(username=${oneuser.getUsername()})}"
+       th:text="${oneuser.getUsername()}">users</a>
+</div>
+
+<p>All rooms of your home:</p>
+<div th:each="oneroom : ${allhomerooms}">
+    <a th:href="${'/person/' + {onehome.getHomename()} + '/' + {oneroom.getRoomname()}}"
+       th:text="${oneroom.getRoomname()}">rooms</a>
+</div>
+
+
+
+<h2>ADD ROOM</h2>
+<form th:action="@{/person/{homename}(homename=${onehome.getHomename()})}" th:object="${emptyroom}" method="post">
+    <input type="text" th:field="*{roomname}" placeholder="Roomname">
+    <button type="submit" class="btn btn-primary btn-block">Add room</button>
+    <span th:utext="${successMessage2}"></span>
+</form>
+
+<h2>ADD RELATIVE</h2>
+<form th:action="@{/person/{homename}(homename=${onehome.getHomename()})}" th:object="${emptyrelative}" method="post">
+    <input type="text" th:field="*{username}" placeholder="Username">
+    <button type="submit" class="btn btn-primary btn-block">Add user</button>
+    <span th:utext="${successMessage1}"></span>
+</form>
+
+
+
+<!-- <a th:href="@{/person/{homename}/{roomname}(homename=${onehome.getHomename()}, roomname=${oneroom.getRoomname()})}" -->
+
+<!-- <a th:href="@{/person/{homename}/addrelative(homename=${onehome.getHomename()})}">ADD A PERSON TO A HOME</a> -->
+<!-- <a th:href="@{/person/{homename}/addroom(homename=${onehome.getHomename()})}">ADD A ROOM TO A HOME</a> -->
+<!-- <div th:text="@{/person/{homename}/addroom(homename=${onehome.getHomename()})}"></div> -->
+</body>
+
+</html>
+
+<!-- <div th:text="@{/person/{homename}/addrelative(homename=${onehome.getHomename()})}"></div> -->
+<!-- href="@{/person/{homename}/addrelative(homename=${onehome.getHomename()})}"  -->

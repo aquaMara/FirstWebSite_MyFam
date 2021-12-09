@@ -1,0 +1,265 @@
+// *****************************************************************************************************************
+
+    @PostMapping("/{homename}/deleteroom")
+    public ModelAndView getUpdatedRoom(@PathVariable("homename")String homename, @ModelAttribute("oneroom")Room room) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        Home thisHome = defaultHomeService.loadHomeByHomename(homename);
+        Room thisRoom = defaultRoomService.loadRoomByRoomname(thisHome, room.getRoomname());
+        defaultRoomService.deleteRoomForHome(thisRoom);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/{homename}/{roomname}/update")
+    public ModelAndView updateAddedNot(@PathVariable("homename")String homename, @PathVariable("roomname")String roomname, @ModelAttribute("note")Note note) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/mainpage");
+
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+
+        List<DefaultUser> allHomeUsers = oneHome.getDefaultUsersForHome();
+        modelAndView.addObject("allhomeusers", allHomeUsers);
+
+        List<Room> allHomeRooms = oneHome.getRoomsForHome();
+        modelAndView.addObject("allhomerooms", allHomeRooms);
+
+        //Room thatRoom = defaultRoomService.loadRoomByRoomname()
+        //defaultRoomService.deleteRoomForHome();
+
+
+        return modelAndView;
+    }
+    @PostMapping("/{homename}/{roomname}/delete")
+    public ModelAndView deleteAddedRoom(@PathVariable("homename")String homename, @PathVariable("roomname")String roomname) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/mainpage");
+
+        //Room thatRoom = defaultRoomService.loadRoomByRoomname()
+        //defaultRoomService.deleteRoomForHome();
+
+        Home thatHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", thatHome);
+
+        Room thatRoom = defaultRoomService.loadRoomByRoomname(thatHome, roomname);
+        //Note thatNote = defaultRoomService.
+
+        /*defaultRoomService.deleteNoteFromRoom(note, thatRoom);
+
+        List<DefaultUser> allHomeUsers = thatHome.getDefaultUsersForHome();
+        modelAndView.addObject("allhomeusers", allHomeUsers);
+
+        List<Room> allHomeRooms = thatHome.getRoomsForHome();
+        modelAndView.addObject("allhomerooms", allHomeRooms);
+
+         */
+
+
+        return modelAndView;
+    }
+
+
+
+
+
+
+
+
+
+
+}
+
+/*
+@GetMapping("/{homename}")
+    public ModelAndView exactHome(@PathVariable("homename")String homename, ModelAndView modelAndView) {
+
+        DefaultUser defaultUser = loggedInUser();
+        List<Home> allHomes = loggedInUser().getHomesForDefaultUser();
+
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+
+        choosenHome = oneHome;
+        System.out.println(choosenHome);
+
+        List<DefaultUser> allHomeUsers = oneHome.getDefaultUsersForHome();
+        modelAndView.addObject("allhomeusers", allHomeUsers);
+
+        // *************************************************************************
+        List<Room> allHomeRooms = oneHome.getRoomsForHome();
+        modelAndView.addObject("allhomerooms", allHomeRooms);
+        // *************************************************************************
+
+        modelAndView.setViewName("person/mainpage");
+
+        //System.out.println("DFHHHHHHHHHHHHHDF**********************GHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKJHH");
+
+        for(DefaultUser containerUser : allHomeUsers)
+            System.out.println(containerUser);
+
+        for(Room containerRoom : allHomeRooms)
+            System.out.println(containerRoom);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/{homename}/addrelative")
+    public ModelAndView addRelative(@PathVariable("homename")String homename, DefaultUser defaultUser) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/addrelative");
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+
+        //System.out.println("DFHHHHHHHHHHHHHDFGHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKJHH");
+
+        return modelAndView;
+    }
+
+ */
+
+/*
+@GetMapping("/{homename}/addrelative")
+    public ModelAndView addRelative(@PathVariable("homename")String homename, DefaultUser defaultUser) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/addrelative");
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+
+        //System.out.println("DFHHHHHHHHHHHHHDFGHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKJHH");
+
+        return modelAndView;
+    }
+
+    @PostMapping("/{homename}/addrelative")
+    public ModelAndView sendAddedRelative(@PathVariable("homename")String homename, Home home, DefaultUser defaultUser) {
+
+        System.out.println("DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/mainpage");
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+
+        if(!defaultUserService.defaultUserExists(defaultUser)) {
+            modelAndView.addObject("successMessage", "User does not exist!");
+            modelAndView.addObject("onehome", oneHome);
+            modelAndView.setViewName("person/addrelative");
+        } else if(defaultHomeService.userIsInHome(oneHome, defaultUser.getUsername())) {
+            modelAndView.addObject("successMessage", "User already lives in home!");
+            modelAndView.addObject("onehome", oneHome);
+            modelAndView.setViewName("person/addrelative");
+        } else {
+            defaultHomeService.addUserForHome(defaultUser, oneHome);
+            modelAndView.addObject("onehome", oneHome);
+
+            List<DefaultUser> allHomeUsers = oneHome.getDefaultUsersForHome();
+            modelAndView.addObject("allhomeusers", allHomeUsers);
+
+            List<Room> allHomeRooms = oneHome.getRoomsForHome();
+            modelAndView.addObject("allhomerooms", allHomeRooms);
+
+        }
+
+        return modelAndView;
+    }
+
+    @GetMapping("/{homename}/addroom")
+    public ModelAndView addRoom(@PathVariable("homename")String homename, Room room) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/addroom");
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+        modelAndView.addObject("homename", homename);
+        modelAndView.addObject("room", new Room());
+
+        System.out.println(choosenHome);
+
+        System.out.println("DFHHHHHHHHHHHHHDFGHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKJHH");
+
+        return modelAndView;
+    }
+
+    @PostMapping("/{homename}/addroom")
+    public ModelAndView sendAddedRoom(@PathVariable("homename")String homename, @ModelAttribute("roomname")String roomname) {
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        Room room = new Room(roomname);
+
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+
+        Home thisHome = defaultHomeService.loadHomeByHomename(homename);
+        if (defaultHomeService.roomIsInHome(thisHome, roomname)) {
+            modelAndView.addObject("successMessage", "Room is already in home!");
+            modelAndView.addObject("onehome", oneHome);
+            modelAndView.addObject("room", room);
+            modelAndView.setViewName("person/addroom");
+        } else {
+            modelAndView.setViewName("person/mainpage");
+            defaultHomeService.addRoomForHome(thisHome, room);
+
+            List<DefaultUser> allHomeUsers = oneHome.getDefaultUsersForHome();
+            modelAndView.addObject("allhomeusers", allHomeUsers);
+
+            List<Room> allHomeRooms = oneHome.getRoomsForHome();
+            modelAndView.addObject("allhomerooms", allHomeRooms);
+        }
+
+        return modelAndView;
+    }
+
+ */
+/*
+@GetMapping("/{first}/{second}")
+    public ModelAndView addNote(@PathVariable("first")String homename, @PathVariable("second")String roomname) {
+        System.out.println("HGJH");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/room/room");
+        //modelAndView.setViewName("person/hi");
+
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+
+        //modelAndView.addObject("homename", homename);
+
+        Room oneRoom = defaultRoomService.loadRoomByRoomname(oneHome, roomname);
+        modelAndView.addObject("oneroom", oneRoom);
+
+        modelAndView.addObject("note", new Note());
+        List allNotes = oneRoom.getNotesForRoom();
+        modelAndView.addObject("allnotes", allNotes);
+        //modelAndView.addObject("roomname", roomname);
+
+        //modelAndView.addObject("note", new Note());
+
+
+        return modelAndView;
+    }
+ */
+/*
+@PostMapping("/{homename}/{roomname}")
+    public ModelAndView sendAddedNote(@PathVariable("homename")String homename, @PathVariable("roomname")String roomname, @ModelAttribute("note")Note thisNote) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        //modelAndView.setViewName("person/room/room");
+        modelAndView.setViewName("person/room/room");
+
+
+        Home oneHome = defaultHomeService.loadHomeByHomename(homename);
+        modelAndView.addObject("onehome", oneHome);
+        Room oneRoom = defaultRoomService.loadRoomByRoomname(oneHome, roomname);
+        modelAndView.addObject("oneroom", oneRoom);
+
+        defaultRoomService.addNoteForRoom(thisNote, oneRoom);
+
+        List allNotes = oneRoom.getNotesForRoom();
+        modelAndView.addObject("allnotes", allNotes);
+
+        System.out.println("DFHHHHHHHHHHHHHDFGHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKJHH");
+
+        return modelAndView;
+    }
+ */

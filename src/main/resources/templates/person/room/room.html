@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ROOM</title>
+</head>
+<body>
+**all notes**
+<div th:each="onenote : ${allnotes}">
+    <div th:text="${onenote.getNotename()}">notename</div>
+    <div th:text="${onenote.getNoteText()}">notetext</div>
+    <p>Delete note</p>
+    <form th:action="${'/person/' + {onehome.getHomename()} + '/' + {oneroom.getRoomname()} + '/delete'}" th:method="post">
+        <input type="submit" value="delete"/>
+    </form>
+</div>
+<p>Add note</p>
+<form th:action="${'/person/' + {onehome.getHomename()} + '/' + {oneroom.getRoomname()}}" th:object="${note}" th:method="post">
+    <input type="text" th:field="*{notename}" placeholder="Notename">
+    <input type="text" th:field="*{noteText}" placeholder="Notetext">
+    <button type="submit" class="btn btn-primary btn-block">Add room</button>
+</form>
+
+<p>Update note</p>
+<form th:action="${'/person/' + {onehome.getHomename()} + '/' + {oneroom.getRoomname()} + '/update'}" th:object="${note}" th:method="post">
+    <input type="text" th:field="*{notename}" placeholder="Notename">
+    <input type="text" th:field="*{noteText}" placeholder="Notetext">
+    <input type="submit" value="change"/>
+</form>
+
+
+<a th:href="@{/person/{homename}(homename=${onehome.getHomename()})}">GO BACK</a>
+</body>
+</html>

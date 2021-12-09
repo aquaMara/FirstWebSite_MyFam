@@ -1,0 +1,91 @@
+html {
+    background-color: white;
+}
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.container {
+    width: 400px;
+    height: 400px;
+    background-color: azure;
+    margin: auto;
+    display: grid;
+    grid-auto-rows: 5fr 3fr;
+    box-shadow: 8px 8px 16px #412782;
+    margin-top: 15px;
+}
+h3 {
+    font-family: 'Bebas Neue', cursive;
+    color: #412782;
+    font-size: 35px;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 10px;
+    margin-top: 50px;
+}
+form {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 10px;
+}
+
+input, button {
+    font-family: 'M PLUS 1 Code', sans-serif;
+    border-style: none;
+    box-shadow: 2px 4px 6px rgba(.8, 0, 0, .2);
+    font-size: 18px;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+input {
+    width: 200px;
+    height: 35px;
+    background-color: #0aa7c0;
+    color: #412782;
+    padding-left: 6px;
+}
+button {
+    width: 80px;
+    background-color: white;
+    color: #412782;
+    float: right;
+    padding-right: 6px;
+}
+.outer-alert {
+    height: 80px;
+    padding-left: 30px;
+    color: cadetblue;
+    font-size: 15px;
+    line-height: 0.1
+}
+#message {
+    margin-top: 15px;
+}
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+a:link {
+    text-decoration: none;
+    color: #0aa7c0;
+    margin-left: 330px;
+}
+a:hover {
+    font-size: 20px;
+}
+a:visited {
+    color: #412782;
+}
+button:hover, buttonhover, button:active {
+    box-shadow: 0px 0px 6px #412782;
+}
+button:focus {
+    background-color: #0aa7c0;
+}
+#message {
+    color: cadetblue;
+    font-size: 15px;
+}

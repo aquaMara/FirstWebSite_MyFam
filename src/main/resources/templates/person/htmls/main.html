@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/css/main.css" th:href="@{/css/main.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>main</title>
+    </head>
+    <body>
+        <div class="container">
+            <div id="homes">
+                <div id="homename" th:text="${onehome.getHomename()}">homename</div>
+                <div class="foreach">
+                    <div th:each="oneroom : ${allhomerooms}">
+                        <a th:href="${'/person/' + {onehome.getHomename()} + '/' + {oneroom.getRoomname()}}"
+                           th:text="${oneroom.getRoomname()}">rooms</a>
+                    </div>
+                </div>
+                <form th:action="@{/person/{homename}(homename=${onehome.getHomename()})}" th:object="${emptyroom}" th:method="post">
+                    <input id="input1" type="text" th:field="*{roomname}" placeholder="Roomname">
+                    <button id="button1" type="submit" class="btn btn-primary btn-block">Add room</button>
+                    <div class="message" th:utext="${successMessageRoom}"></div>
+                </form>
+                <div id="link-back">
+                    <a th:href="@{/person}">back to homes</a>
+                </div>
+            </div>
+
+            <div id="notes">
+
+            </div>
+
+            <div id="people">
+                <div id="relativename">housemates</div>
+                <div class="foreach">
+                    <div th:each="oneuser : ${allhomeusers}">
+                        <a th:text="${oneuser.getUsername()}">users</a>
+                    </div>
+                </div>
+                <form th:action="@{/person/{homename}(homename=${onehome.getHomename()})}" th:object="${emptyrelative}" th:method="post">
+                    <input  id="input2" type="text" th:field="*{username}" placeholder="Username">
+                    <button  id="button2" type="submit" class="btn btn-primary btn-block">Add user</button>
+                    <div class="message" th:utext="${successMessagePerson}"></div>
+                </form>
+                <div id="link-customize">
+                    <!-- <a th:href="@{/person/feedback}">feedback</a> -->
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

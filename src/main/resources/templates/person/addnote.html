@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD NOTE</title>
+</head>
+<body>
+
+
+<div>
+    <form th:action="@{/person/{homename}/{roomname}/addnote(homename=${onehome.getHomename()}), (roomname=${onehome.getHomename()})}" th:object="${note}" method="post">
+        <input type="text" th:field="*{notename}" placeholder="Roomname">
+        <button type="submit" class="btn btn-primary btn-block">Add room</button>
+        <span th:utext="${successMessage}"></span>
+        <!--<span th:utext="${successMessage}"></span>-->
+        <a th:href="@{/person/{homename}/{roomname}/addnote(homename=${onehome.getHomename()}), (roomname=${onehome.getHomename()})}">LINK</a>
+        <a th:href="@{/person/{homename}(homename=${onehome.getHomename()})}">BACK</a>
+    </form>
+</div>
+
+</body>
+</html>

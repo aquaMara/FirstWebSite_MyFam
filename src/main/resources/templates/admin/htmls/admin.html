@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/static/css/admin.css" th:href="@{/css/admin.css}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>admin</title>
+    </head>
+    <body>
+        <div class="container">
+            <div id="people">
+                <table>
+                    <tr>
+                        <th style="width: 20px">ID</th>
+                        <th style="width: 100px">NAME</th>
+                        <th style="width: 100px">USERNAME</th>
+                        <th style="width: 100px">ROLE</th>
+                        <th style="width: 100px">ENABLED</th>
+                        <th style="width: 100px">! LOCKED</th>
+                    </tr>
+                    <tr th:each="oneperson : ${allpeople}">
+                        <td style="width: 20px" th:text="${oneperson.getId()}"></td>
+                        <td style="width: 100px" th:text="${oneperson.getName()}"></td>
+                        <td style="width: 100px" th:text="${oneperson.getUsername()}"></td>
+                        <td style="width: 100px" th:text="${oneperson.getAppUserRole()}"></td>
+                        <td style="width: 100px" th:text="${oneperson.isEnabled()}"></td>
+                        <td style="width: 100px" th:text="${oneperson.isAccountNonLocked()}"></td>
+                    </tr>
+                </table>
+                <a th:href="@{/admin/home}">TO HOMES</a>
+                <a th:href="@{/admin}">TO FEEDBACK</a>
+            </div>
+
+        </div>
+    </body>
+</html>

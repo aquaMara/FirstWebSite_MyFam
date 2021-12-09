@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/static/css/feedbackadmin.css" th:href="@{/css/feedbackadmin.css}" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>admin</title>
+</head>
+<body>
+<div class="container">
+    <div id="feedback">
+        <table>
+            <tr>
+                <th style="width: 20px">ID</th>
+                <th style="width: 40px">FEEDBACK</th>
+            </tr>
+            <tr th:each="onefeed : ${allfeeds}">
+                <td style="width: 20px" th:text="${onefeed.getFeedbackId()}"></td>
+                <td style="width: 300px" th:text="${onefeed.getFeedback()}"></td>
+            </tr>
+        </table>
+
+
+        <form th:method="get" th:action="${'/admin' + '/print'}">
+            <input type="submit" value="Print"/>
+        </form>
+
+
+        <a th:href="@{/admin/user}">TO USERS</a> </br>
+        <a th:href="@{/admin/home}">TO HOMES</a> </br>
+    </div>
+
+</div>
+</body>
+</html>

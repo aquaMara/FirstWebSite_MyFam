@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="csses/newhome.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+        <title>NEWHOME</title>
+    </head>
+    <body>
+        <div class="container">
+            <form th:action="@{/person/newhome}" th:object="${home}" method="post">
+                <input type="text" th:field="*{homename}" placeholder="Homename">
+                <button type="submit" class="btn btn-primary btn-block">Add home</button>
+                <span th:utext="${successMessage}"></span>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+@GetMapping("/newhome")
+    public ModelAndView addHome(Home home) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/newhome");
+
+        return modelAndView;
+    }
+    @PostMapping("/newhome")
+    public ModelAndView sendAddedHome(@Valid Home home, BindingResult bindingResult, ModelMap modelMap) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("person/htmls/homes");
+
+        if(defaultHomeService.homeExists(home)) {
+            modelAndView.addObject("successMessage", "Homename already taken!");
+            modelAndView.setViewName("person/newhome");
+        } else if(home.getHomename().equals("") || home.getHomename() == null) {
+            modelAndView.addObject("successMessage", "Homename should not be empty!");
+            modelAndView.setViewName("person/newhome");
+        } else {
+            defaultUserService.addHomeForUser(loggedInUser(), home);
+            modelAndView.addObject("successMessage", "Home is registered successfully!");
+            List<Home> allHomes = defaultUser.getHomesForDefaultUser();
+            modelAndView.addObject("allhomes", allHomes);;
+        }
+
+        return modelAndView;
+    }

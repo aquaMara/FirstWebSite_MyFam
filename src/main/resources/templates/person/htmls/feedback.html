@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/feedback.css" th:href="@{/css/feedback.css}" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>feedback</title>
+</head>
+<body>
+<div class="container">
+    <div id="feedback">
+        <form th:action="@{/person/feedback}" th:object="${emptyfeedback}" th:method="post">
+            <input id="input" type="text" th:field="*{feedback}" placeholder="Feedback">
+            <button id="button" type="submit" class="btn btn-primary btn-block">Add feedback</button>
+        </form>
+        <div id="link-back">
+            <a th:href="@{/person}">back to homes</a>
+        </div>
+    </div>
+
+</body>
+</html>

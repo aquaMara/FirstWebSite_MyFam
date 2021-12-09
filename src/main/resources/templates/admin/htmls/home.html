@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/static/css/home.css" th:href="@{/css/home.css}" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>home</title>
+</head>
+<body>
+<div class="container">
+    <div id="people">
+        <table>
+            <tr>
+                <th style="width: 20px">ID</th>
+                <th style="width: 100px">HOMENAME</th>
+            </tr>
+            <tr th:each="onehome : ${allhomes}">
+                <td style="width: 20px" th:text="${onehome.getHomeId()}"></td>
+                <td style="width: 100px" th:text="${onehome.getHomename()}"></td>
+            </tr>
+        </table>
+        <a th:href="@{/admin/user}">TO USERS</a>
+        <a th:href="@{/admin}">TO FEEDBACK</a>
+    </div>
+
+</div>
+</body>
+</html>

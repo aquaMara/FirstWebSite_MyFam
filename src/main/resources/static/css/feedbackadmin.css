@@ -1,0 +1,15 @@
+html {
+    background-color: black;
+    color: green;
+}
+.container {
+    margin: auto;
+}
+a {
+    color: green;
+    text-decoration: none;
+}
+input:hover, a:hover {
+    border-style: solid;
+    border-color: green;
+}
